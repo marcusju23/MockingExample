@@ -60,4 +60,12 @@ class EmployeeTest {
         employee.setPaid(false);
         assertFalse(employee.isPaid());
     }
+
+    @Test
+    @DisplayName("true if string matches employee")
+    void trueIfStringMatchesEmployee() {
+        Employee employee1 = new Employee("192", 33000);
+        String expectedString = "Employee [id=192, salary=33000.0]";
+        assertEquals(expectedString, employee1.toString());
+    }
 }
