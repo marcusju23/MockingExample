@@ -53,4 +53,11 @@ class EmployeeTest {
         employee.setPaid(true);
         assertTrue(employee.isPaid());
     }
+
+    @Test
+    @DisplayName("true if employee has not been paid")
+    void trueIfEmployeeHasNotBeenPaid() {
+        employee.setPaid(false);
+        assertFalse(employee.isPaid());
+    }
 }
