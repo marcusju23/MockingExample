@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("EmployeeTest")
 class EmployeeTest {
@@ -46,5 +45,12 @@ class EmployeeTest {
         employee.setSalary(36000);
         double newSalary = employee.getSalary();
         assertNotEquals(newSalary, oldSalary);
+    }
+
+    @Test
+    @DisplayName("true if employee has been paid")
+    void trueIfEmployeeHasBeenPaid() {
+        employee.setPaid(true);
+        assertTrue(employee.isPaid());
     }
 }
