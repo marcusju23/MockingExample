@@ -30,4 +30,11 @@ class CalculatorTest {
     public void sumOfMultipleNumbersShouldBeCalculatedCorrectly() {
         assertEquals(10, Calculator.add("1,2,3,4"));
     }
+
+    @Test
+    @DisplayName("numbers with newline should return correct sum")
+    public void numbersWithNewlineShouldReturnCorrectSum() {
+        assertEquals(6, Calculator.add("1\n2,3"));
+    }
+
 }
