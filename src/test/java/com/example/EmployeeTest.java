@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("EmployeeTest")
 class EmployeeTest {
 
     private Employee employee;
+
     @BeforeEach
     void setUp(){
         employee = new Employee("142",35000);
