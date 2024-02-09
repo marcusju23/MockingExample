@@ -103,4 +103,28 @@ class CalculatorTest {
         }
     }
 
+    @Test
+    @DisplayName("add with numbers larger than 1000 should ignore them")
+    public void addWithNumbersLargerThan1000ShouldIgnore() {
+        String input = "2,1001,5,2000,992";
+        int result = Calculator.add(input);
+        assertEquals(999, result);
+    }
+
+    @Test
+    @DisplayName("add with numbers less than or equal to 1000 should sum them")
+    public void addWithNumbersLessThanOrEqualTo1000ShouldSum() {
+        String input = "2,998";
+        int result = Calculator.add(input);
+        assertEquals(1000, result);
+    }
+
+    @Test
+    @DisplayName("add with only numbers larger than 1000 should return zero")
+    public void addWithOnlyNumbersLargerThan1000ShouldReturnZero() {
+        String input = "1001,2000,5000";
+        int result = Calculator.add(input);
+        assertEquals(0, result);
+    }
+
 }
