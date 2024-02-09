@@ -22,15 +22,16 @@ public class Calculator {
 
         String[] numberSegments = numbers.split(delimiter);
 
-        int sum = 0;
         List<String> negatives = new ArrayList<>();
+        int sum = 0;
 
         for (String num : numberSegments) {
             int currentNum = Integer.parseInt(num);
             if (currentNum < 0) {
                 negatives.add(String.valueOf(currentNum));
+            } else if (currentNum <= 1000) {
+                sum += currentNum;
             }
-            sum += currentNum;
         }
 
         if (!negatives.isEmpty()) {
