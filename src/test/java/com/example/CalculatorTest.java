@@ -51,4 +51,56 @@ class CalculatorTest {
         assertEquals(3, Calculator.add("//;\n1;2"));
     }
 
+    @Test
+    @DisplayName("add with single negative number should throw exception with that number")
+    public void addWithSingleNegativeNumberShouldThrowException() {
+        String input = "-5";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Calculator.add(input);
+        });
+        assertTrue(exception.getMessage().contains("-5"));
+    }
+
+    @Test
+    @DisplayName("add with only negative numbers should throw an exception with negative numbers")
+    public void addWithOnlyNegativeNumbersShouldThrowException() {
+        String input = "-1,-2,-3,-4,-5";
+        try {
+            Calculator.add(input);
+            fail("Expected IllegalArgumentException, but no exception was thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("-1"));
+            assertTrue(e.getMessage().contains("-2"));
+            assertTrue(e.getMessage().contains("-3"));
+            assertTrue(e.getMessage().contains("-4"));
+            assertTrue(e.getMessage().contains("-5"));
+        }
+    }
+
+    @Test
+    @DisplayName("add with positive and negative numbers should throw an exception with negative numbers")
+    public void addWithPositiveAndNegativeNumbersShouldThrowException() {
+        String input = "-1,2,-3,4,-5";
+        try {
+            Calculator.add(input);
+            fail("Expected IllegalArgumentException, but no exception was thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("-1"));
+            assertTrue(e.getMessage().contains("-3"));
+            assertTrue(e.getMessage().contains("-5"));
+        }
+    }
+
+    @Test
+    @DisplayName("add with more positive than negative numbers should throw an exception with negative numbers")
+    public void addWithMorePositiveThanNegativeNumbersShouldThrowException() {
+        String input = "1,2,-3,4,5";
+        try {
+            Calculator.add(input);
+            fail("Expected IllegalArgumentException, but no exception was thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue(e.getMessage().contains("-3"));
+        }
+    }
+
 }
