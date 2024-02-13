@@ -32,8 +32,6 @@ public class Calculator {
                     negatives.add(String.valueOf(currentNum));
                 } else if (currentNum <= 1000) {
                     sum += currentNum;
-                } else {
-                    sum += 0;
                 }
             }
         }
