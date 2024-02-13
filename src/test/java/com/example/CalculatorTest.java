@@ -113,4 +113,12 @@ class CalculatorTest {
         int sum = Calculator.add(input);
         assertThat(sum).isEqualTo(expectedSum);
     }
+
+    @Test
+    @DisplayName("custom delimiter of any length")
+    void customDelimiterOfAnyLength() {
+        String input = "//[***]\n1***2***3";
+        int result = Calculator.add(input);
+        assertEquals(6, result);
+    }
 }
