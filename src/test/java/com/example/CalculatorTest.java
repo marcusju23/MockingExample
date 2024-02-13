@@ -9,37 +9,37 @@ class CalculatorTest {
 
     @Test
     @DisplayName("empty string should return zero")
-    public void emptyStringShouldReturnZero() {
+    void emptyStringShouldReturnZero() {
         assertEquals(0, Calculator.add(""));
     }
 
     @Test
     @DisplayName("single number should return same")
-    public void singleNumberShouldReturnSame() {
+    void singleNumberShouldReturnSame() {
         assertEquals(1, Calculator.add("1"));
     }
 
     @Test
     @DisplayName("two numbers should return their sum")
-    public void twoNumbersShouldReturnSum() {
+    void twoNumbersShouldReturnSum() {
         assertEquals(3, Calculator.add("1,2"));
     }
 
     @Test
     @DisplayName("sum of multiple numbers should be calculated correctly")
-    public void sumOfMultipleNumbersShouldBeCalculatedCorrectly() {
+    void sumOfMultipleNumbersShouldBeCalculatedCorrectly() {
         assertEquals(10, Calculator.add("1,2,3,4"));
     }
 
     @Test
     @DisplayName("numbers with newline should return correct sum")
-    public void numbersWithNewlineShouldReturnCorrectSum() {
+    void numbersWithNewlineShouldReturnCorrectSum() {
         assertEquals(6, Calculator.add("1\n2,3"));
     }
 
     @Test
     @DisplayName("adding numbers with default delimiters (',' and '\\n')")
-    public void addNumbersWithDefaultDelimiters() {
+    void addNumbersWithDefaultDelimiters() {
         assertEquals(6, Calculator.add("1,2,3"));
         assertEquals(15, Calculator.add("1,2,3,4,5"));
         assertEquals(10, Calculator.add("1\n2,3\n4"));
@@ -47,13 +47,13 @@ class CalculatorTest {
 
     @Test
     @DisplayName("adding numbers with custom delimiter ';'")
-    public void addNumbersWithCustomDelimiterSemicolon() {
+    void addNumbersWithCustomDelimiterSemicolon() {
         assertEquals(3, Calculator.add("//;\n1;2"));
     }
 
     @Test
     @DisplayName("add with single negative number should throw exception with that number")
-    public void addWithSingleNegativeNumberShouldThrowException() {
+    void addWithSingleNegativeNumberShouldThrowException() {
         String input = "-5";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Calculator.add(input);
@@ -63,7 +63,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with only negative numbers should throw an exception with negative numbers")
-    public void addWithOnlyNegativeNumbersShouldThrowException() {
+    void addWithOnlyNegativeNumbersShouldThrowException() {
         String input = "-1,-2,-3,-4,-5";
         try {
             Calculator.add(input);
@@ -79,7 +79,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with positive and negative numbers should throw an exception with negative numbers")
-    public void addWithPositiveAndNegativeNumbersShouldThrowException() {
+    void addWithPositiveAndNegativeNumbersShouldThrowException() {
         String input = "-1,2,-3,4,-5";
         try {
             Calculator.add(input);
@@ -93,7 +93,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with more positive than negative numbers should throw an exception with negative numbers")
-    public void addWithMorePositiveThanNegativeNumbersShouldThrowException() {
+    void addWithMorePositiveThanNegativeNumbersShouldThrowException() {
         String input = "1,2,-3,4,5";
         try {
             Calculator.add(input);
@@ -105,7 +105,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with numbers larger than 1000 should ignore them")
-    public void addWithNumbersLargerThan1000ShouldIgnore() {
+    void addWithNumbersLargerThan1000ShouldIgnore() {
         String input = "2,1001,5,2000,992";
         int result = Calculator.add(input);
         assertEquals(999, result);
@@ -113,7 +113,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with numbers less than or equal to 1000 should sum them")
-    public void addWithNumbersLessThanOrEqualTo1000ShouldSum() {
+    void addWithNumbersLessThanOrEqualTo1000ShouldSum() {
         String input = "2,998";
         int result = Calculator.add(input);
         assertEquals(1000, result);
@@ -121,7 +121,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("add with only numbers larger than 1000 should return zero")
-    public void addWithOnlyNumbersLargerThan1000ShouldReturnZero() {
+    void addWithOnlyNumbersLargerThan1000ShouldReturnZero() {
         String input = "1001,2000,5000";
         int result = Calculator.add(input);
         assertEquals(0, result);
