@@ -2,7 +2,10 @@ package com.example;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
@@ -103,28 +106,11 @@ class CalculatorTest {
         }
     }
 
-    @Test
-    @DisplayName("add with numbers larger than 1000 should ignore them")
-    void addWithNumbersLargerThan1000ShouldIgnore() {
-        String input = "2,1001,5,2000,992";
-        int result = Calculator.add(input);
-        assertEquals(999, result);
+    @ParameterizedTest
+    @DisplayName("add method handles different sets of numbers")
+    @CsvSource(value = {"2,1001,5,2000,992;999", "2,998;1000", "1001,2000,5000;0"}, delimiter = ';')
+    void addMethodHandlesDifferentSetsOfNumbers(String input, int expectedSum) {
+        int sum = Calculator.add(input);
+        assertThat(sum).isEqualTo(expectedSum);
     }
-
-    @Test
-    @DisplayName("add with numbers less than or equal to 1000 should sum them")
-    void addWithNumbersLessThanOrEqualTo1000ShouldSum() {
-        String input = "2,998";
-        int result = Calculator.add(input);
-        assertEquals(1000, result);
-    }
-
-    @Test
-    @DisplayName("add with only numbers larger than 1000 should return zero")
-    void addWithOnlyNumbersLargerThan1000ShouldReturnZero() {
-        String input = "1001,2000,5000";
-        int result = Calculator.add(input);
-        assertEquals(0, result);
-    }
-
 }
