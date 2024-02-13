@@ -121,4 +121,12 @@ class CalculatorTest {
         int result = Calculator.add(input);
         assertEquals(6, result);
     }
+
+    @Test
+    @DisplayName("multiple delimiters enclosed in square brackets")
+    void multipleDelimitersEnclosedInSquareBrackets() {
+        String input = "//[*][%]\n1*2%3";
+        int result = Calculator.add(input);
+        assertEquals(6, result);
+    }
 }
