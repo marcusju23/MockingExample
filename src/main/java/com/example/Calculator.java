@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -10,14 +11,13 @@ public class Calculator {
             return 0;
         }
 
-        String delimiter = "[,\n]";
+        String delimiter = "[,|\n]";
         if (numbers.startsWith("//")) {
-            int delimiterIndex = numbers.indexOf("\n");
-            if (delimiterIndex != -1) {
-                String customDelimiter = numbers.substring(2, delimiterIndex);
-                delimiter = "[" + customDelimiter + "\n]";
-                numbers = numbers.substring(delimiterIndex + 1);
-            }
+            int startDelimiterIndex = numbers.indexOf("//") + 2;
+            int endDelimiterIndex = numbers.indexOf("\n");
+            String customDelimiter = numbers.substring(startDelimiterIndex, endDelimiterIndex);
+            delimiter = "[" + Pattern.quote(customDelimiter) + "|\n]";
+            numbers = numbers.substring(endDelimiterIndex + 1);
         }
 
         String[] numberSegments = numbers.split(delimiter);
@@ -26,11 +26,15 @@ public class Calculator {
         int sum = 0;
 
         for (String num : numberSegments) {
-            int currentNum = Integer.parseInt(num);
-            if (currentNum < 0) {
-                negatives.add(String.valueOf(currentNum));
-            } else if (currentNum <= 1000) {
-                sum += currentNum;
+            if (!num.isEmpty()) {
+                int currentNum = Integer.parseInt(num);
+                if (currentNum < 0) {
+                    negatives.add(String.valueOf(currentNum));
+                } else if (currentNum <= 1000) {
+                    sum += currentNum;
+                } else {
+                    sum += 0;
+                }
             }
         }
 
